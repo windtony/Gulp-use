@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>首页</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="window-target" content="_top" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="email=no" name="format-detection" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/radio.css">
+  	<script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/icheck.min.js"></script>
+	<script type="text/javascript" src="js/angular.min.js" ></script>
+</head>
+
+	<body ng-app="pay">
+		<header class="tac">
+			<h3 class="mt10">确认订单</h3>
+		</header>
+		<section class="wrapper wrap grid" ng-controller="content" ng-cloak>
+			<section>
+				<h3 class="m10">{{phone}}</h3>
+				<ul>
+					<li class="wrap grid p10 b1">
+						<span class="dib fl">商品单价:</span>
+						<span class="dib fr">{{price}}元</span>
+					</li>
+					<li class="wrap grid p10 b1">
+						<span class="dib fl">商品数量:</span>
+						<ul class="number dib fr">
+							<li>
+								<img ng-src="img/{{delete}}"class="w30 vam"ng-click="deleteOne()" /></li>
+							<li>
+								<span class="w50 tac mlr5">{{count}}</span>
+							</li>
+							<li>
+								<img ng-src="img/{{plus}}"class="w30 vam"ng-click="count = count + 1" ng-init="count=2"/></li>
+						</ul>
+					</li>
+					<li class="wrap grid p10 b1">
+						<span class="dib fl">商品总价:</span>
+						<span class="dib fr"><b class="red">{{price*count}}</b>元</span>
+					</li>
+				</ul>
+			</section>
+			
+			<p class="wrap grid p10 bg">
+				<span>请选择付款方式:</span>
+			</p>
+			
+			<div class="wrap">
+				<nav class="tab fl dib" onclick="show(0)">储蓄卡</nav>
+				<nav class="other fl dib" onclick="show(1)">信用卡</nav> 
+			</div>
+			<div class="wrap p5" id="content">
+				<div class="scoll">
+					<form action="#" method="post">
+					<section class="s2 skin skin-flat">
+			            <div class="skin-section">
+			              <ul class="radio">
+			                <li>
+			                <label for="flat-radio-0">
+							  <img ng-src="img/{{alipay}}" class="vam bank"/>
+			                  <input tabindex="0" type="radio" id="flat-radio-0" name="flat-radio" checked>
+			                  </label>
+			                </li>
+			                <li>
+		                	  <label for="flat-radio-1">
+		                	  <img ng-src="img/{{ibcb}}" class="vam bank"/>	
+			                  <input tabindex="1" type="radio" id="flat-radio-1" name="flat-radio">
+			                  </label>
+			                </li>
+			                 <li>
+		                	  <label for="flat-radio-2">
+		                	  <img ng-src="img/{{cbc}}" class="vam bank"/>	
+			                  <input tabindex="2" type="radio" id="flat-radio-2" name="flat-radio">
+			                  </label>
+			                </li>
+			                 <li>
+		                	  <label for="flat-radio-3">
+		                	  <img ng-src="img/{{cmbc}}" class="vam bank"/>	
+			                  <input tabindex="3" type="radio" id="flat-radio-3" name="flat-radio">
+			                  </label>
+			                </li>
+			                 <li>
+		                	  <label for="flat-radio-4">
+		                	  <img ng-src="img/{{abc}}" class="vam bank"/>	
+			                  <input tabindex="4" type="radio" id="flat-radio-4" name="flat-radio">
+			                  </label>
+			                </li>
+			                 <li>
+		                	  <label for="flat-radio-5">
+		                	  <img ng-src="img/{{psbc}}" class="vam bank"/>	
+			                  <input tabindex="5" type="radio" id="flat-radio-5" name="flat-radio">
+			                  </label>
+			                </li>
+			              </ul>
+			            </div>
+			            <script>
+			            $(document).ready(function(){
+			              $('.skin-flat input').iCheck({
+			                checkboxClass: 'icheckbox_flat-red',
+			                radioClass: 'iradio_flat-red'
+			              });
+			            });
+			            </script>
+					</section>
+				</form>
+				</div>
+				<div class="scoll hide">
+					<form action="#" method="post">
+						<section class="s2 skin skin-flat">
+				            <div class="skin-section">
+				              <ul class="radio">
+				                 <li>
+			                	  <label for="flat-radio-6">
+			                	  <img ng-src="img/{{psbc}}" class="vam bank"/>	
+				                  <input tabindex="14" type="radio" id="flat-radio-6" name="flat-radio">
+				                  </label>
+				                </li>
+				              </ul>
+				            </div>
+				            <script>
+					            $(document).ready(function(){
+					              $('.skin-flat input').iCheck({
+					                checkboxClass: 'icheckbox_flat-red',
+					                radioClass: 'iradio_flat-red'
+					              });
+					            });
+				            </script>
+						</section>
+					</form>
+				</div>
+			</div>	
+		</section>
+		<footer class="tac complete">
+				<span>确认支付</span>
+		</footer>
+		
+		<script type="text/javascript" src="js/tab.js" ></script>
+		
+		<script>
+			(function(angular) {
+			  'use strict';
+			  var app=angular.module('pay',[])
+			  app.controller('content',function($scope){
+			  	$scope.phone = "华为ASCEND P7";
+			  	$scope.price=2200;
+			  	$scope.delete="delete.png";
+			  	$scope.plus="plus.png";
+			  	$scope.alipay="alipay.png";
+			  	$scope.ibcb="ibcb.png";
+			  	$scope.cbc="cbc.png";
+			  	$scope.cmbc="cmbc.png";
+			  	$scope.abc="abc.png";
+			  	$scope.psbc="psbc.png";
+			  	$scope.count=1;
+			  	$scope.deleteOne=function(){
+			  		if($scope.count > 1){
+			  			$scope.count--;
+			  		}
+			  		}
+			  });
+			})(window.angular);
+		</script>
+	</body>
+</html>
